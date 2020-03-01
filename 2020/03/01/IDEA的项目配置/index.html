@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
+  <script src="/lib/pace/pace.min.js"></script>
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"gjw459.github.io","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
+  </script>
+
+  <meta name="description" content="IDEA的项目配置*">
+<meta property="og:type" content="article">
+<meta property="og:title" content="IDEA的项目配置">
+<meta property="og:url" content="https://gjw459.github.io/2020/03/01/IDEA%E7%9A%84%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="平凡的路の博客">
+<meta property="og:description" content="IDEA的项目配置*">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZTwYB1Olp0Osl9nxS9AwbE91CvmUZtBTH3087Noj3z1ribicOkrlESeCnA/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZTp5krt1iaQbOC2uzz1QogTWjeelliaibodabvfFqE8bglDbcX29lud0TNQ/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZTEBdNXcxjuKvmBRVaBjMFm14niaygecz6E8dEugE2IEF4zmRe4plD6Bw/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZTpdnsWb7Lpk2QstJGWp4YbzNhdIXqSicnS5icAktJuPLKR0w6TX5LziaRg/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZT8RNDLa6SdDibOupEtpwFxjX5feDdlYUjQkvPk2UGs5iaUjMI8NcoGriaQ/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZTpSmI2dtEOWV5WkWINBquS0Iic0qd98YqXXup2dD1gK33J37CcE2Fx4w/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZTgJAZ3DIGYMT2WKNTPJuYHt27MyhibVbf8slTdNd54icPpOIskibUr2gyQ/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZTOZtXJDReIhJ6ytuAdpByTdO0huyHqA4ian0dSmibxINl42icgiaIv4fDcg/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZTAIzKUn1HwcYd85n6iaYQe2sXMtibOD8GH1xzNYwWtQwUDnfdSUs1mDGQ/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="og:image" content="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZTgROnrP2G5UdI0n4LVovTJMoCFmB6LFrDvz6XsA038I6MEgb7Zecrwg/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+<meta property="article:published_time" content="2020-03-01T06:47:12.000Z">
+<meta property="article:modified_time" content="2020-03-01T07:12:42.644Z">
+<meta property="article:author" content="GJW459">
+<meta property="article:tag" content="导航">
+<meta property="article:tag" content="标签">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZTwYB1Olp0Osl9nxS9AwbE91CvmUZtBTH3087Noj3z1ribicOkrlESeCnA/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1">
+
+<link rel="canonical" href="https://gjw459.github.io/2020/03/01/IDEA%E7%9A%84%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>IDEA的项目配置 | 平凡的路の博客</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">平凡的路の博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://gjw459.github.io/2020/03/01/IDEA%E7%9A%84%E9%A1%B9%E7%9B%AE%E9%85%8D%E7%BD%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/%E5%B0%8F%E6%96%B0.gif">
+      <meta itemprop="name" content="GJW459">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="平凡的路の博客">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          IDEA的项目配置
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-03-01 14:47:12 / 修改时间：15:12:42" itemprop="dateCreated datePublished" datetime="2020-03-01T14:47:12+08:00">2020-03-01</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/IDEA/" itemprop="url" rel="index"><span itemprop="name">IDEA</span></a>
+                </span>
+            </span>
+
+          
+            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              <span class="post-meta-item-text">阅读次数：</span>
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="IDEA的项目配置"><a href="#IDEA的项目配置" class="headerlink" title="IDEA的项目配置"></a>IDEA的项目配置</h1><p>*<a id="more"></a>*</p>
+<h2 id="项目配置的理解"><a href="#项目配置的理解" class="headerlink" title="项目配置的理解"></a>项目配置的理解</h2><p>IDEA 中最重要的各种设置项，就是这个 <strong>Project Structre</strong> 了，关乎你的项目运行，缺胳膊少腿都不行。最近公司正好也是用之前自己比较熟悉的IDEA而不是Eclipse，为了更深入理解和使用，就找来各种资料再研究一下，这里整理后来个输出。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZTwYB1Olp0Osl9nxS9AwbE91CvmUZtBTH3087Noj3z1ribicOkrlESeCnA/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<h2 id="project-structure"><a href="#project-structure" class="headerlink" title="project structure"></a>project structure</h2><h3 id="Project"><a href="#Project" class="headerlink" title="Project"></a>Project</h3><p><img src="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZTp5krt1iaQbOC2uzz1QogTWjeelliaibodabvfFqE8bglDbcX29lud0TNQ/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p><strong>1. Project name</strong>：</p>
+<p>定义项目的名称；</p>
+<p><strong>2. Project SDK</strong>：</p>
+<p>设置该项目使用的JDK，也可以在此处新添加其他版本的JDK；</p>
+<p><strong>3. Project language level</strong>：</p>
+<p>这个和JDK的类似，区别在于，假如你设置了JDK1.8，却只用到1.6的特性，那么这里可以设置语言等级为1.6，这个是限定项目编译检查时最低要求的JDK特性；</p>
+<p><strong>4. Project compiler output</strong>：</p>
+<p>项目中的默认编译输出总目录，如图黄色部分，实际上每个模块可以自己设置特殊的输出目录（Modules - (project) - Paths - Use module compile output path），所以这个设置有点鸡肋。</p>
+<h3 id="Modules"><a href="#Modules" class="headerlink" title="Modules"></a><strong>Modules</strong></h3><p><img src="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZTEBdNXcxjuKvmBRVaBjMFm14niaygecz6E8dEugE2IEF4zmRe4plD6Bw/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<ol>
+<li><strong>增删子项目</strong></li>
+</ol>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZTpdnsWb7Lpk2QstJGWp4YbzNhdIXqSicnS5icAktJuPLKR0w6TX5LziaRg/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>一个项目中可以有多个子项目，每个子项目相当于一个模块。一般我们项目只是单独的一个，IntelliJ IDEA 默认也是单子项目的形式，所以只需要配置一个模块。</p>
+<p>（此处的两个项目引入仅作示例参考）</p>
+<ol start="2">
+<li>子项目配置</li>
+</ol>
+<p>每个子项目都对应了Sources、Paths、Dependencies 三大配置选项：</p>
+<p><strong>Sources</strong>：</p>
+<p>显示项目的目录资源，那些是项目部署的时候需要的目录，不同颜色代表不同的类型；</p>
+<p><strong>Paths</strong>：</p>
+<p>可以指定项目的编译输出目录，即项目类和测试类的编译输出地址（替换掉了Project的默认输出地址）</p>
+<p><strong>Dependencies</strong>：项目的依赖</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZT8RNDLa6SdDibOupEtpwFxjX5feDdlYUjQkvPk2UGs5iaUjMI8NcoGriaQ/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZTpSmI2dtEOWV5WkWINBquS0Iic0qd98YqXXup2dD1gK33J37CcE2Fx4w/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZTgJAZ3DIGYMT2WKNTPJuYHt27MyhibVbf8slTdNd54icPpOIskibUr2gyQ/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<ol start="3">
+<li>增删框架</li>
+</ol>
+<p>每个子项目之下都可以定义它所使用的框架，这里重点说明一下Web部分的设置。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZTOZtXJDReIhJ6ytuAdpByTdO0huyHqA4ian0dSmibxINl42icgiaIv4fDcg/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<h3 id="Libraries"><a href="#Libraries" class="headerlink" title="Libraries"></a><strong>Libraries</strong></h3><p>这里可以显示所添加的jar包，同时也可以添加jar包，并且可以把多个jar放在一个组里面，类似于jar包整理。</p>
+<p>这里默认将每个jar包做为了一个单独的组（未测试，待定）。</p>
+<h3 id="Facets"><a href="#Facets" class="headerlink" title="Facets"></a><strong>Facets</strong></h3><p>官方的解释是：</p>
+<p>When you select a framework (a facet) in the element selector pane, the settings for the framework are shown in the right-hand part of the dialog.</p>
+<p>（当你在左边选择面板点击某个技术框架，右边将会显示这个框架的一些设置）</p>
+<p>说实话，并没有感觉到有什么作用。</p>
+<h3 id="Artifacts"><a href="#Artifacts" class="headerlink" title="Artifacts"></a><strong>Artifacts</strong></h3><p>项目的打包部署设置，这个是项目配置里面比较关键的地方，重点说一下。</p>
+<p>先理解下它的含义，来看看官方定义的artifacts：</p>
+<p>An artifact is an assembly of your project assets that you put together to test, deploy or distribute your software solution or its part. Examples are a collection of compiled Java classes or a Java application packaged in a Java archive, a Web application as a directory structure or a Web application archive, etc.</p>
+<p>即编译后的Java类，Web资源等的整合，用以测试、部署等工作。再白话一点，就是说某个module要如何打包，例如war exploded、war、jar、ear等等这种打包形式。某个module有了 Artifacts 就可以部署到应用服务器中了。</p>
+<p><strong>*( jar</strong>：<em>*Java ARchive，通常用于聚合大量的Java类文件、相关的元数据和资源（文本、图片等）文件到一个文件，以便分发Java平台应用软件或库；</em></p>
+<p><strong>*war</strong>：<em>*Web application ARchive，一种JAR文件，其中包含用来分发的JSP、Java Servlet、Java类、XML文件、标签库、静态网页（HTML和相关文件），以及构成Web应用程序的其他资源；</em></p>
+<p><strong>*exploded</strong>：<em>*在这里你可以理解为展开，不压缩的意思。也就是war、jar等产出物没压缩前的目录结构。建议在开发的时候使用这种模式，便于修改了文件的效果立刻显现出来。)</em></p>
+<p>默认情况下，IDEA的 Modules 和 Artifacts 的 output目录已经设置好了，不需要更改，打成war包的时候会自动在 WEB-INF目录下生成classes，然后把编译后的文件放进去。</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZTAIzKUn1HwcYd85n6iaYQe2sXMtibOD8GH1xzNYwWtQwUDnfdSUs1mDGQ/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<p>你可能对这里的输出目录不太理解，之前不是配置过了文件编译的输出目录了吗？为什么这里还有一个整合这些资源的目录呢？它又做了哪些事呢？ </p>
+<p>其实，实际上，当你点击运行tomcat时，默认就开始做以下事情：</p>
+<p>编译，IDEA在保存/自动保存后不会做编译，不像Eclipse的保存即编译，因此在运行server前会做一次编译。</p>
+<p>编译后class文件存放在指定的项目编译输出目录下（见1.2.2）；</p>
+<p>根据artifact中的设定对目录结构进行创建；</p>
+<p>拷贝web资源的根目录下的所有文件到artifact的目录下（见1.2.3）；</p>
+<p>拷贝编译输出目录下的classes目录到artifact下的WEB-INF下（见1.2.2）；</p>
+<p>拷贝lib目录下所需的jar包到artifact下的WEB_INF下；</p>
+<p>运行server，运行成功后，如有需要，会自动打开浏览器访问指定url。</p>
+<p>在这里还要注意的是，配置完成的artifact，需要在tomcat中进行添加：</p>
+<p><img src="https://mmbiz.qpic.cn/mmbiz_png/oTKHc6F8tshHCH5Az9piaaEt0TAR2mqZTgROnrP2G5UdI0n4LVovTJMoCFmB6LFrDvz6XsA038I6MEgb7Zecrwg/640?tp=webp&wxfrom=5&wx_lazy=1&wx_co=1" alt="img"></p>
+<h2 id="IntelliJ-IDEA-项目相关的几个重要概念介绍"><a href="#IntelliJ-IDEA-项目相关的几个重要概念介绍" class="headerlink" title="IntelliJ IDEA 项目相关的几个重要概念介绍"></a>IntelliJ IDEA 项目相关的几个重要概念介绍</h2><p>whudoc.qiniudn.com/2016/IntelliJ-IDEA-Tutorial/project-composition-introduce.html</p>
+<p><a href="http://www.jetbrains.com/help/idea/2016.3/dependencies-tab.html" target="_blank" rel="noopener">www.jetbrains.com/help/idea/2016.3/dependencies-tab.html</a></p>
+<p>Dependencies Tab</p>
+<p><a href="https://www.jetbrains.com/help/idea/2016.3/facet-page.html" target="_blank" rel="noopener">https://www.jetbrains.com/help/idea/2016.3/facet-page.html</a></p>
+<p>Facet Page</p>
+<p>Working with Artifacts</p>
+<p><a href="http://www.jetbrains.com/help/idea/2016.3/working-with-artifacts.html#artifact_def" target="_blank" rel="noopener">www.jetbrains.com/help/idea/2016.3/working-with-artifacts.html#artifact_def</a></p>
+<p>Intellij IDEA 14.x 中的Facets和Artifacts的区别</p>
+<p><a href="http://www.cnblogs.com/52php/p/5677661.html" target="_blank" rel="noopener">www.cnblogs.com/52php/p/5677661.html</a></p>
+<p>IntelliJ使用指南—— 深入理解IntelliJ的Web部署逻辑</p>
+<p>white-crucifix.iteye.com/blog/2070830</p>
+<p>IntelliJ IDEA WEB项目的部署配置</p>
+<p>my.oschina.net/lujianing/blog/186737</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%AF%BC%E8%88%AA/" rel="tag"># 导航</a>
+              <a href="/tags/%E6%A0%87%E7%AD%BE/" rel="tag"># 标签</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/02/29/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/" rel="prev" title="服务器部署">
+      <i class="fa fa-chevron-left"></i> 服务器部署
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#IDEA的项目配置"><span class="nav-number">1.</span> <span class="nav-text">IDEA的项目配置</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目配置的理解"><span class="nav-number">1.1.</span> <span class="nav-text">项目配置的理解</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#project-structure"><span class="nav-number">1.2.</span> <span class="nav-text">project structure</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Project"><span class="nav-number">1.2.1.</span> <span class="nav-text">Project</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Modules"><span class="nav-number">1.2.2.</span> <span class="nav-text">Modules</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Libraries"><span class="nav-number">1.2.3.</span> <span class="nav-text">Libraries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Facets"><span class="nav-number">1.2.4.</span> <span class="nav-text">Facets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Artifacts"><span class="nav-number">1.2.5.</span> <span class="nav-text">Artifacts</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IntelliJ-IDEA-项目相关的几个重要概念介绍"><span class="nav-number">1.3.</span> <span class="nav-text">IntelliJ IDEA 项目相关的几个重要概念介绍</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="GJW459"
+      src="/images/%E5%B0%8F%E6%96%B0.gif">
+  <p class="site-author-name" itemprop="name">GJW459</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/GJW459" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GJW459" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://github.com/GJW459" title="https:&#x2F;&#x2F;github.com&#x2F;GJW459" rel="noopener" target="_blank">我的github</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">GJW459</span>
+</div>
+
+<!--
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.1
+  </div>-->
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  
+  <script color='255,0,0' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
