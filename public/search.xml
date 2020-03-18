@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>复习MySQL第一天</title>
+      <link href="/2020/03/18/%E5%A4%8D%E4%B9%A0MySQL%E7%AC%AC%E4%B8%80%E5%A4%A9/"/>
+      <url>/2020/03/18/%E5%A4%8D%E4%B9%A0MySQL%E7%AC%AC%E4%B8%80%E5%A4%A9/</url>
+      
+        <content type="html"><![CDATA[<h2 id="复习MySQL第一天"><a href="#复习MySQL第一天" class="headerlink" title="复习MySQL第一天"></a>复习MySQL第一天</h2><a id="more"></a><h3 id="1-什么是数据库"><a href="#1-什么是数据库" class="headerlink" title="1. 什么是数据库?"></a>1. 什么是数据库?</h3><p>Database：是按照数据结构来组织，储存和管理数据的仓库。</p><p>常见数据库</p><ul><li>Oracle</li><li>DB2</li><li>SQL Server</li><li>Postagre SQL</li><li>MySQL</li></ul><p>相关的术语</p><ul><li>数据库系统(Database System):DBS</li><li>数据库管理系统(Database Management System):DBMS</li><li>应用开发工具</li><li>管理员及用户</li></ul><p>SQL语言:</p><p>​    Strunctured Qurey Language:结构化查询语言</p><p>SQL包括下面四类</p><ol><li>DDL:数据定义语言</li><li>DML:数据操作语言</li><li>DQL:数据查询语言</li><li>DCL:数据控制语言</li></ol><h3 id="2-MySQL相关操作"><a href="#2-MySQL相关操作" class="headerlink" title="2. MySQL相关操作"></a>2. MySQL相关操作</h3><ol><li><p>配置文件：Linux：my.cnf  Windows:my.ini</p></li><li><p>登录/退出Mysql</p><ul><li>登录</li><li>mysql -uroot -p/mysql -uroot -ppassword</li><li>得到版本号：mysql -V</li><li>登录的同时打开数据库</li><li>mysql -uroot -p -D db_name</li><li>退出</li><li>exit/quit</li><li>登录信息需要掌握的：</li><li>命令行结束符以;或者\g结束</li><li>可以通过help 或者\h 或者？加上关键字来查看手册</li><li>\c可以取消当前命令的执行</li></ul><ol start="3"><li>SQL语句语法规范</li></ol><p>常用MySQL的关键字我们需要大写，库名、表名、字段名称等使用小写<br>SQL语句支持折行操作，拆分的时候不能把完整单词拆开<br>数据库名称、表名称、字段名称不要使用MySQL的保留字，如果必须要使用，需要用反引号``将其括起来</p><p>常用SQL语句</p><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="keyword">USER</span>()得到登录用户</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">VERSION</span>()得到MySql的版本信息</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">NOW</span>()获取当前日期时间</span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DATABASE</span>()得到当前打开的数据库</span><br></pre></td></tr></table></figure></li></ol><h3 id="3-数据库相关操作"><a href="#3-数据库相关操作" class="headerlink" title="3. 数据库相关操作"></a>3. 数据库相关操作</h3><ul><li><p>创建数据库</p><ul><li><pre><code class="sql"><span class="keyword">create</span> <span class="keyword">database</span>|<span class="keyword">schema</span> db_name;<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 检测数据库名是否存在，否则不创建</span><br><span class="line"></span><br><span class="line">- &#96;&#96;&#96;sql</span><br><span class="line">  create database [if not exists] db_name</span><br></pre></td></tr></table></figure></code></pre></li><li><p>创建数据库的同时指定编码方式</p></li><li><pre><code class="sql"><span class="keyword">create</span> <span class="keyword">database</span> [<span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">exists</span>] db_name <span class="keyword">default</span><span class="built_in">character</span> <span class="keyword">set</span>=UTF<span class="number">-8</span>&lt;!<span class="comment">--￼2--&gt;</span></code></pre></li><li><p>查看指定数据库的详细信息</p></li><li><pre><code class="sql"><span class="keyword">show</span> <span class="keyword">create</span> <span class="keyword">database</span> db_name&lt;!<span class="comment">--￼3--&gt;</span></code></pre></li><li><p>打开指定数据库</p></li><li><pre><code class="sql">user db_name<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">- 得到当前打开的数据库</span><br><span class="line"></span><br><span class="line">- &#96;&#96;&#96;sql</span><br><span class="line">  select database()|schema()</span><br></pre></td></tr></table></figure></code></pre></li><li><p>删除指定的数据库</p></li><li><pre><code class="sql"><span class="keyword">drop</span> <span class="keyword">database</span>  db_name&lt;!<span class="comment">--￼5--&gt;</span><span class="keyword">drop</span> <span class="keyword">database</span> [<span class="keyword">if</span> <span class="keyword">exists</span>] db_name</code></pre></li></ul></li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> MySQL </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 导航 </tag>
+            
+            <tag> 分享 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>复习springboot的第一天</title>
       <link href="/2020/03/18/%E5%A4%8D%E4%B9%A0springboot%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9/"/>
       <url>/2020/03/18/%E5%A4%8D%E4%B9%A0springboot%E7%9A%84%E7%AC%AC%E4%B8%80%E5%A4%A9/</url>
