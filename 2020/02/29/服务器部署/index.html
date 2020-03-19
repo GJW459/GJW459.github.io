@@ -1,278 +1,13 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 4.2.0">
-  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
-  <link rel="mask-icon" href="/images/logo.svg" color="#222">
-
-<link rel="stylesheet" href="/css/main.css">
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
-  <link rel="stylesheet" href="/lib/pace/pace-theme-bounce.min.css">
-  <script src="/lib/pace/pace.min.js"></script>
-
-<script id="hexo-configurations">
-    var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"gjw459.github.io","root":"/","scheme":"Gemini","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"./public/search.xml"};
-  </script>
-
-  <meta name="description" content="服务器部署">
-<meta property="og:type" content="article">
-<meta property="og:title" content="服务器部署">
-<meta property="og:url" content="https://gjw459.github.io/2020/02/29/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/index.html">
-<meta property="og:site_name" content="平凡的路の博客">
-<meta property="og:description" content="服务器部署">
-<meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://t1.picb.cc/uploads/2020/02/29/kvHeyD.png">
-<meta property="og:image" content="https://t1.picb.cc/uploads/2020/02/29/kvHlmv.png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3B4ZXhjYjFsMi5ia3QuY2xvdWRkbi5jb20vYmxvZy8xNTY3Nzc4ODk5MTgyLnBuZw?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3B4ZXhjYjFsMi5ia3QuY2xvdWRkbi5jb20vYmxvZy8xNTY3Nzc4ODk5MTg2LnBuZw?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3B4ZXhjYjFsMi5ia3QuY2xvdWRkbi5jb20vYmxvZy8xNTY3Nzc4ODk5MTg3LnBuZw?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3B4ZXhjYjFsMi5ia3QuY2xvdWRkbi5jb20vYmxvZy8xNTY3Nzc4ODk5MTg5LnBuZw?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3B4ZXhjYjFsMi5ia3QuY2xvdWRkbi5jb20vYmxvZy8xNTY3Nzc4ODk5MTkwLnBuZw?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3B4ZXhjYjFsMi5ia3QuY2xvdWRkbi5jb20vYmxvZy8xNTY3Nzc4ODk5MTk1LnBuZw?x-oss-process=image/format,png">
-<meta property="og:image" content="https://t1.picb.cc/uploads/2020/02/29/kvHuai.png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3B4ZXhjYjFsMi5ia3QuY2xvdWRkbi5jb20vYmxvZy8xNTY3Nzc4ODk5MTk2LnBuZw?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3B4ZXhjYjFsMi5ia3QuY2xvdWRkbi5jb20vYmxvZy8xNTY3Nzc4ODk5MTk3LnBuZw?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3B4ZXhjYjFsMi5ia3QuY2xvdWRkbi5jb20vYmxvZy8xNTY3Nzc4ODk5MjAyLnBuZw?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3B4ZXhjYjFsMi5ia3QuY2xvdWRkbi5jb20vYmxvZy8xNTY3Nzc4ODk5MjAzLnBuZw?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3B4ZXhjYjFsMi5ia3QuY2xvdWRkbi5jb20vYmxvZy8xNTY3Nzc4ODk5MjMxLnBuZw?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3B4ZXhjYjFsMi5ia3QuY2xvdWRkbi5jb20vYmxvZy8xNTY3Nzc4ODk5NDE4LnBuZw?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3B4ZXhjYjFsMi5ia3QuY2xvdWRkbi5jb20vYmxvZy8xNTY3Nzc4ODk5NDM5LnBuZw?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3B4ZXhjYjFsMi5ia3QuY2xvdWRkbi5jb20vYmxvZy8xNTY3Nzc4ODk5NDU4LnBuZw?x-oss-process=image/format,png">
-<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cDovL3B4ZXhjYjFsMi5ia3QuY2xvdWRkbi5jb20vYmxvZy8xNTY3Nzc4ODk5NDYwLnBuZw?x-oss-process=image/format,png">
-<meta property="og:image" content="https://t1.picb.cc/uploads/2020/02/29/kvHmnW.png">
-<meta property="og:image" content="https://t1.picb.cc/uploads/2020/02/29/kvHHZ8.png">
-<meta property="og:image" content="https://t1.picb.cc/uploads/2020/02/29/kvHr8g.png">
-<meta property="og:image" content="https://t1.picb.cc/uploads/2020/02/29/kvH5XX.png">
-<meta property="og:image" content="https://t1.picb.cc/uploads/2020/02/29/kvH7nK.png">
-<meta property="article:published_time" content="2020-02-29T13:30:00.000Z">
-<meta property="article:modified_time" content="2020-03-04T08:29:58.114Z">
-<meta property="article:author" content="GJW459">
-<meta property="article:tag" content="导航">
-<meta property="article:tag" content="分享">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://t1.picb.cc/uploads/2020/02/29/kvHeyD.png">
-
-<link rel="canonical" href="https://gjw459.github.io/2020/02/29/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/">
-
-
-<script id="page-configurations">
-  // https://hexo.io/docs/variables.html
-  CONFIG.page = {
-    sidebar: "",
-    isHome: false,
-    isPost: true
-  };
-</script>
-
-  <title>服务器部署 | 平凡的路の博客</title>
-  
-
-
-
-
-
-
-  <noscript>
-  <style>
-  .use-motion .brand,
-  .use-motion .menu-item,
-  .sidebar-inner,
-  .use-motion .post-block,
-  .use-motion .pagination,
-  .use-motion .comments,
-  .use-motion .post-header,
-  .use-motion .post-body,
-  .use-motion .collection-header { opacity: initial; }
-
-  .use-motion .site-title,
-  .use-motion .site-subtitle {
-    opacity: initial;
-    top: initial;
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="服务器部署"><meta name="keywords" content="导航,分享"><meta name="author" content="GJW459"><meta name="copyright" content="GJW459"><title>服务器部署 | 平凡的路の博客</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.7.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.7.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://v1.hitokoto.cn/?encode=js&amp;charset=utf-8&amp;select=.footer_custom_text" defer></script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
   }
-
-  .use-motion .logo-line-before i { left: initial; }
-  .use-motion .logo-line-after i { right: initial; }
-  </style>
-</noscript>
-
-</head>
-
-<body itemscope itemtype="http://schema.org/WebPage">
-  <div class="container use-motion">
-    <div class="headband"></div>
-
-    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-container">
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
-    </div>
-  </div>
-
-  <div class="site-meta">
-
-    <div>
-      <a href="/" class="brand" rel="start">
-        <span class="logo-line-before"><i></i></span>
-        <span class="site-title">平凡的路の博客</span>
-        <span class="logo-line-after"><i></i></span>
-      </a>
-    </div>
-  </div>
-
-  <div class="site-nav-right">
-    <div class="toggle popup-trigger">
-        <i class="fa fa-search fa-fw fa-lg"></i>
-    </div>
-  </div>
-</div>
-
-
-<nav class="site-nav">
-  
-  <ul id="menu" class="menu">
-        <li class="menu-item menu-item-home">
-
-    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
-
-  </li>
-        <li class="menu-item menu-item-tags">
-
-    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
-
-  </li>
-        <li class="menu-item menu-item-categories">
-
-    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
-
-  </li>
-        <li class="menu-item menu-item-archives">
-
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
-
-  </li>
-      <li class="menu-item menu-item-search">
-        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
-        </a>
-      </li>
-  </ul>
-
-</nav>
-  <div class="site-search">
-    <div class="popup search-popup">
-    <div class="search-header">
-  <span class="search-icon">
-    <i class="fa fa-search"></i>
-  </span>
-  <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="off"
-           placeholder="搜索..." spellcheck="false"
-           type="search" class="search-input">
-  </div>
-  <span class="popup-btn-close">
-    <i class="fa fa-times-circle"></i>
-  </span>
-</div>
-<div id="search-result"></div>
-
-</div>
-<div class="search-pop-overlay"></div>
-
-  </div>
-</div>
-    </header>
-
-    
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
-
-
-    <main class="main">
-      <div class="main-inner">
-        <div class="content-wrap">
-          
-
-          <div class="content">
-            
-
-  <div class="posts-expand">
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://gjw459.github.io/2020/02/29/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/%E5%B0%8F%E6%96%B0.gif">
-      <meta itemprop="name" content="GJW459">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="平凡的路の博客">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          服务器部署
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-02-29 21:30:00" itemprop="dateCreated datePublished" datetime="2020-02-29T21:30:00+08:00">2020-02-29</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-03-04 16:29:58" itemprop="dateModified" datetime="2020-03-04T16:29:58+08:00">2020-03-04</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Linux/" itemprop="url" rel="index"><span itemprop="name">Linux</span></a>
-                </span>
-            </span>
-
-          
-            <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-eye"></i>
-              </span>
-              <span class="post-meta-item-text">阅读次数：</span>
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-        <h1 id="服务器部署"><a href="#服务器部署" class="headerlink" title="服务器部署"></a>服务器部署</h1><a id="more"></a>
+} </script><meta name="generator" content="Hexo 4.2.0"></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#服务器部署"><span class="toc-number">1.</span> <span class="toc-text">服务器部署</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-购买云服务器"><span class="toc-number">1.1.</span> <span class="toc-text">1,购买云服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-部署所需要的工具"><span class="toc-number">1.2.</span> <span class="toc-text">2,部署所需要的工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Xshell"><span class="toc-number">1.2.1.</span> <span class="toc-text">Xshell</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装JDK-配置java环境"><span class="toc-number">1.2.2.</span> <span class="toc-text">安装JDK,配置java环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#tomcat安装与端口配置"><span class="toc-number">1.2.3.</span> <span class="toc-text">tomcat安装与端口配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MySQL安装与配置"><span class="toc-number">1.2.4.</span> <span class="toc-text">MySQL安装与配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-部署war包"><span class="toc-number">1.3.</span> <span class="toc-text">3,部署war包</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-部署jar包-Springboot构建的项目"><span class="toc-number">1.4.</span> <span class="toc-text">4,部署jar包(Springboot构建的项目)</span></a></li></ol></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://img2.woyaogexing.com/2020/03/19/a26a52f7ea6a41f398439cf4fea00309!400x400.jpeg"></div><div class="author-info__name text-center">GJW459</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/gjw459" target="_blank" rel="noopener">github</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">7</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">2</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">5</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://pic4.zhimg.com/v2-78dfe120c4f516da57a7c3a5c094789a_r.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">平凡的路の博客</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">服务器部署</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-02-29</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/Linux/">Linux</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="服务器部署"><a href="#服务器部署" class="headerlink" title="服务器部署"></a>服务器部署</h1><a id="more"></a>
 
 <h2 id="1-购买云服务器"><a href="#1-购买云服务器" class="headerlink" title="1,购买云服务器"></a>1,购买云服务器</h2><p>我是在腾讯云上买的服务器</p>
 <p><a href="https://cloud.tencent.com/" target="_blank" rel="noopener">腾讯云</a></p>
@@ -332,7 +67,7 @@
 <ol>
 <li>下载以后Xshell输入如下命令：</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//在usr文件夹下新建java目录</span><br><span class="line">mkdir /usr/java</span><br><span class="line">//进入java目录</span><br><span class="line">cd /usr/java</span><br><span class="line">//激活上传操作 ！！！</span><br><span class="line">yum -y install lrzsz</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//在usr文件夹下新建java目录</span><br><span class="line">mkdir /usr/java</span><br><span class="line">//进入java目录</span><br><span class="line">cd /usr/java</span><br><span class="line">//激活上传操作 ！！！</span><br><span class="line">yum -y install lrzsz</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>激活成功</li>
@@ -348,7 +83,7 @@
 <p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL3B4ZXhjYjFsMi5ia3QuY2xvdWRkbi5jb20vYmxvZy8xNTY3Nzc4ODk5MjAzLnBuZw?x-oss-process=image/format,png" alt="img"></p>
 <ol start="3">
 <li><p>上传完成后解压安装包：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">//在创建的/usr/java目录下执行ls，查看压缩包名</span><br><span class="line">ls</span><br><span class="line">//复制文件夹名填到下方压缩包名处，将压缩包解压</span><br><span class="line">tar -zxvf 压缩包名</span><br><span class="line">如: tar -zxvf xx.tar.gz</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//在创建的/usr/java目录下执行ls，查看压缩包名</span><br><span class="line">ls</span><br><span class="line">//复制文件夹名填到下方压缩包名处，将压缩包解压</span><br><span class="line">tar -zxvf 压缩包名</span><br><span class="line">如: tar -zxvf xx.tar.gz</span><br></pre></td></tr></table></figure>
 
 
 
@@ -360,7 +95,7 @@
 <p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL3B4ZXhjYjFsMi5ia3QuY2xvdWRkbi5jb20vYmxvZy8xNTY3Nzc4ODk5MjMxLnBuZw?x-oss-process=image/format,png" alt="img"></p>
 <ol start="4">
 <li><p>配置jdk环境变量</p>
-<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">//进入etc文件夹</span><br><span class="line">cd /etc</span><br><span class="line">//打开profile文件,按shift+i进入编辑模式</span><br><span class="line">vi profile</span><br><span class="line">//配置环境变量,在profile文件中添加如下内容,注意更换到你的版本</span><br><span class="line">export JAVA_HOME=/usr/java/jdk1.<span class="number">8.0</span>_221 </span><br><span class="line">export JRE_HOME=<span class="variable">$</span>&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:<span class="variable">$</span>&#123;JAVA_HOME&#125;/lib:<span class="variable">$</span>&#123;JRE_HOME&#125;/lib:<span class="variable">$CLASSPATH</span></span><br><span class="line">export JAVA_PATH=<span class="variable">$</span>&#123;JAVA_HOME&#125;/bin:<span class="variable">$</span>&#123;JRE_HOME&#125;/bin</span><br><span class="line">export PATH=<span class="variable">$PATH:</span><span class="variable">$</span>&#123;JAVA_PATH&#125;</span><br><span class="line">//按“esc”退出编辑模式,随后按“shift+：”进入命令模式，保存并退出</span><br><span class="line">输入“wq” 回车</span><br></pre></td></tr></table></figure>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">//进入etc文件夹</span><br><span class="line">cd /etc</span><br><span class="line">//打开profile文件,按shift+i进入编辑模式</span><br><span class="line">vi profile</span><br><span class="line">//配置环境变量,在profile文件中添加如下内容,注意更换到你的版本</span><br><span class="line">export JAVA_HOME=/usr/java/jdk1.<span class="number">8.0</span>_221 </span><br><span class="line">export JRE_HOME=<span class="variable">$</span>&#123;JAVA_HOME&#125;/jre</span><br><span class="line">export CLASSPATH=.:<span class="variable">$</span>&#123;JAVA_HOME&#125;/lib:<span class="variable">$</span>&#123;JRE_HOME&#125;/lib:<span class="variable">$CLASSPATH</span></span><br><span class="line">export JAVA_PATH=<span class="variable">$</span>&#123;JAVA_HOME&#125;/bin:<span class="variable">$</span>&#123;JRE_HOME&#125;/bin</span><br><span class="line">export PATH=<span class="variable">$PATH:</span><span class="variable">$</span>&#123;JAVA_PATH&#125;</span><br><span class="line">//按“esc”退出编辑模式,随后按“shift+：”进入命令模式，保存并退出</span><br><span class="line">输入“wq” 回车</span><br></pre></td></tr></table></figure>
 
 
 
@@ -373,12 +108,12 @@
 </ol>
 <p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL3B4ZXhjYjFsMi5ia3QuY2xvdWRkbi5jb20vYmxvZy8xNTY3Nzc4ODk5NDM5LnBuZw?x-oss-process=image/format,png" alt="img"></p>
 <h3 id="tomcat安装与端口配置"><a href="#tomcat安装与端口配置" class="headerlink" title="tomcat安装与端口配置"></a>tomcat安装与端口配置</h3><p>和之前的jdk安装一样先解压</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//在创建的/usr/java目录下执行ls，查看压缩包名</span><br><span class="line">ls</span><br><span class="line">//复制文件夹名填到下方压缩包名处，将压缩包解压</span><br><span class="line">tar -zxvf 压缩包名</span><br><span class="line">//修改文件夹名称（注意版本对应你下载的）</span><br><span class="line">mv apache-tomcat-8.5.45 tomcat8</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//在创建的/usr/java目录下执行ls，查看压缩包名</span><br><span class="line">ls</span><br><span class="line">//复制文件夹名填到下方压缩包名处，将压缩包解压</span><br><span class="line">tar -zxvf 压缩包名</span><br><span class="line">//修改文件夹名称（注意版本对应你下载的）</span><br><span class="line">mv apache-tomcat-8.5.45 tomcat8</span><br></pre></td></tr></table></figure>
 
 <p>需要改端口就去 conf文件夹下的server.xml中改就行</p>
 <ul>
 <li><p>启动tomcat</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//进入tomcat的bin目录</span><br><span class="line">cd /usr/tomcat/tomcat8/bin</span><br><span class="line">//启动tomcat,输入</span><br><span class="line">./startup.sh 回车</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//进入tomcat的bin目录</span><br><span class="line">cd /usr/tomcat/tomcat8/bin</span><br><span class="line">//启动tomcat,输入</span><br><span class="line">./startup.sh 回车</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>测试 <!--http://ip:port/--></li>
@@ -391,28 +126,28 @@
 <li><p>firewalld命令</p>
 </li>
 </ul>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">1.firewalld的基本使用</span><br><span class="line">启动：  systemctl start firewalld</span><br><span class="line">查状态：systemctl status firewalld </span><br><span class="line">停止：  systemctl disable firewalld</span><br><span class="line">禁用：  systemctl stop firewalld</span><br><span class="line">在开机时启用一个服务：systemctl enable firewalld.service</span><br><span class="line">在开机时禁用一个服务：systemctl disable firewalld.service</span><br><span class="line">查看服务是否开机启动：systemctl is-enabled firewalld.service</span><br><span class="line">查看已启动的服务列表：systemctl list-unit-files|grep enabled</span><br><span class="line">查看启动失败的服务列表：systemctl --failed</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">1.firewalld的基本使用</span><br><span class="line">启动：  systemctl start firewalld</span><br><span class="line">查状态：systemctl status firewalld </span><br><span class="line">停止：  systemctl disable firewalld</span><br><span class="line">禁用：  systemctl stop firewalld</span><br><span class="line">在开机时启用一个服务：systemctl enable firewalld.service</span><br><span class="line">在开机时禁用一个服务：systemctl disable firewalld.service</span><br><span class="line">查看服务是否开机启动：systemctl is-enabled firewalld.service</span><br><span class="line">查看已启动的服务列表：systemctl list-unit-files|grep enabled</span><br><span class="line">查看启动失败的服务列表：systemctl --failed</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">2.配置firewalld-cmd</span><br><span class="line">查看版本： firewall-cmd --version</span><br><span class="line">查看帮助： firewall-cmd --help</span><br><span class="line">显示状态： firewall-cmd --state</span><br><span class="line">查看所有打开的端口： firewall-cmd --zone=public --list-ports</span><br><span class="line">更新防火墙规则： firewall-cmd --reload</span><br><span class="line">查看区域信息:  firewall-cmd --get-active-zones</span><br><span class="line">查看指定接口所属区域： firewall-cmd --get-zone-of-interface=eth0</span><br><span class="line">拒绝所有包：firewall-cmd --panic-on</span><br><span class="line">取消拒绝状态： firewall-cmd --panic-off</span><br><span class="line">查看是否拒绝： firewall-cmd --query-panic</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">2.配置firewalld-cmd</span><br><span class="line">查看版本： firewall-cmd --version</span><br><span class="line">查看帮助： firewall-cmd --help</span><br><span class="line">显示状态： firewall-cmd --state</span><br><span class="line">查看所有打开的端口： firewall-cmd --zone=public --list-ports</span><br><span class="line">更新防火墙规则： firewall-cmd --reload</span><br><span class="line">查看区域信息:  firewall-cmd --get-active-zones</span><br><span class="line">查看指定接口所属区域： firewall-cmd --get-zone-of-interface=eth0</span><br><span class="line">拒绝所有包：firewall-cmd --panic-on</span><br><span class="line">取消拒绝状态： firewall-cmd --panic-off</span><br><span class="line">查看是否拒绝： firewall-cmd --query-panic</span><br></pre></td></tr></table></figure>
 
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">3.那怎么开启一个端口呢</span><br><span class="line">添加</span><br><span class="line">firewall-cmd --zone=public(作用域) --add-port=80/tcp(端口和访问类型) --permanent(永久生效)</span><br><span class="line">firewall-cmd --zone=public --add-service=http --permanent</span><br><span class="line">firewall-cmd --reload    # 重新载入，更新防火墙规则</span><br><span class="line">firewall-cmd --zone= public --query-port=80/tcp  #查看</span><br><span class="line">firewall-cmd --zone= public --remove-port=80/tcp --permanent  # 删除</span><br><span class="line"></span><br><span class="line">firewall-cmd --list-services</span><br><span class="line">firewall-cmd --get-services</span><br><span class="line">firewall-cmd --add-service=&lt;service&gt;</span><br><span class="line">firewall-cmd --delete-service=&lt;service&gt;</span><br><span class="line">在每次修改端口和服务后/etc/firewalld/zones/public.xml文件就会被修改,所以也可以在文件中之间修改,然后重新加载</span><br><span class="line">使用命令实际也是在修改文件，需要重新加载才能生效。</span><br><span class="line"></span><br><span class="line">firewall-cmd --zone=public --query-port=80/tcp</span><br><span class="line">firewall-cmd --zone=public --query-port=8080/tcp</span><br><span class="line">firewall-cmd --zone=public --query-port=3306/tcp</span><br><span class="line">firewall-cmd --zone=public --add-port=8080/tcp --permanent</span><br><span class="line">firewall-cmd --zone=public --add-port=3306/tcp --permanent</span><br><span class="line">firewall-cmd --zone=public --query-port=3306/tcp</span><br><span class="line">firewall-cmd --zone=public --query-port=8080/tcp</span><br><span class="line">firewall-cmd --reload  # 重新加载后才能生效</span><br><span class="line">firewall-cmd --zone=public --query-port=3306/tcp</span><br><span class="line">firewall-cmd --zone=public --query-port=8080/tcp</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">3.那怎么开启一个端口呢</span><br><span class="line">添加</span><br><span class="line">firewall-cmd --zone=public(作用域) --add-port=80/tcp(端口和访问类型) --permanent(永久生效)</span><br><span class="line">firewall-cmd --zone=public --add-service=http --permanent</span><br><span class="line">firewall-cmd --reload    # 重新载入，更新防火墙规则</span><br><span class="line">firewall-cmd --zone= public --query-port=80/tcp  #查看</span><br><span class="line">firewall-cmd --zone= public --remove-port=80/tcp --permanent  # 删除</span><br><span class="line"></span><br><span class="line">firewall-cmd --list-services</span><br><span class="line">firewall-cmd --get-services</span><br><span class="line">firewall-cmd --add-service=&lt;service&gt;</span><br><span class="line">firewall-cmd --delete-service=&lt;service&gt;</span><br><span class="line">在每次修改端口和服务后/etc/firewalld/zones/public.xml文件就会被修改,所以也可以在文件中之间修改,然后重新加载</span><br><span class="line">使用命令实际也是在修改文件，需要重新加载才能生效。</span><br><span class="line"></span><br><span class="line">firewall-cmd --zone=public --query-port=80/tcp</span><br><span class="line">firewall-cmd --zone=public --query-port=8080/tcp</span><br><span class="line">firewall-cmd --zone=public --query-port=3306/tcp</span><br><span class="line">firewall-cmd --zone=public --add-port=8080/tcp --permanent</span><br><span class="line">firewall-cmd --zone=public --add-port=3306/tcp --permanent</span><br><span class="line">firewall-cmd --zone=public --query-port=3306/tcp</span><br><span class="line">firewall-cmd --zone=public --query-port=8080/tcp</span><br><span class="line">firewall-cmd --reload  # 重新加载后才能生效</span><br><span class="line">firewall-cmd --zone=public --query-port=3306/tcp</span><br><span class="line">firewall-cmd --zone=public --query-port=8080/tcp</span><br></pre></td></tr></table></figure>
 
 
 
 <p>例如:打开8081端口</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --list-ports##列出public域中端口</span><br><span class="line">firewall-cmd --zone=public --add-port=8081/tcp --permanent##永久生效，没有此参数重启后失效</span><br><span class="line">firewall-cmd --reload##添加端口后记得重新加载</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --zone=public --list-ports##列出public域中端口</span><br><span class="line">firewall-cmd --zone=public --add-port=8081/tcp --permanent##永久生效，没有此参数重启后失效</span><br><span class="line">firewall-cmd --reload##添加端口后记得重新加载</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>上传到Linuxs的“/usr/tomcat/tomcat8/webapps”目录下；重启tomcat</li>
 </ul>
 <p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL3B4ZXhjYjFsMi5ia3QuY2xvdWRkbi5jb20vYmxvZy8xNTY3Nzc4ODk5NDU4LnBuZw?x-oss-process=image/format,png" alt="img"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//进入bin文件夹</span><br><span class="line">cd /usr/tomcat/tomcat8/bin</span><br><span class="line">//关闭tomcat</span><br><span class="line">./shutdown.sh</span><br><span class="line">//查看是否成功关闭</span><br><span class="line">ps -ef|grep java</span><br><span class="line">//如果出现以下信息，则表示Tomcat已经关闭</span><br><span class="line">root 19955 19757 0 17:48 pts/0 00:00:00 grep java</span><br><span class="line">//启动Tomcat</span><br><span class="line">./startup.sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//进入bin文件夹</span><br><span class="line">cd /usr/tomcat/tomcat8/bin</span><br><span class="line">//关闭tomcat</span><br><span class="line">./shutdown.sh</span><br><span class="line">//查看是否成功关闭</span><br><span class="line">ps -ef|grep java</span><br><span class="line">//如果出现以下信息，则表示Tomcat已经关闭</span><br><span class="line">root 19955 19757 0 17:48 pts/0 00:00:00 grep java</span><br><span class="line">//启动Tomcat</span><br><span class="line">./startup.sh</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>如果显示以下相似信息，说明Tomcat还没有关闭</li>
 </ul>
 <p><img src="https://imgconvert.csdnimg.cn/aHR0cDovL3B4ZXhjYjFsMi5ia3QuY2xvdWRkbi5jb20vYmxvZy8xNTY3Nzc4ODk5NDYwLnBuZw?x-oss-process=image/format,png" alt="img"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//使用kill命令杀死tomcat</span><br><span class="line">kill -9 12778 </span><br><span class="line">//再次查看</span><br><span class="line">ps -ef|grep java</span><br><span class="line">//启动Tomcat</span><br><span class="line">./startup.sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//使用kill命令杀死tomcat</span><br><span class="line">kill -9 12778 </span><br><span class="line">//再次查看</span><br><span class="line">ps -ef|grep java</span><br><span class="line">//启动Tomcat</span><br><span class="line">./startup.sh</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>重启tomcat后,war包会自动被解压为webapps文件夹下的文件</li>
@@ -422,12 +157,12 @@
 <h3 id="MySQL安装与配置"><a href="#MySQL安装与配置" class="headerlink" title="MySQL安装与配置"></a>MySQL安装与配置</h3><ol>
 <li>xshell中输入下载安装包命令</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//5.7版本</span><br><span class="line">wget http://repo.mysql.com/mysql57-community-release-el7-8.noarch.rpm</span><br><span class="line">//8.0版本</span><br><span class="line">wget https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm</span><br><span class="line">//其他版本自己去官网下yum安装栏找下载路径</span><br><span class="line">//未安装wget的同学执行以下命令安装</span><br><span class="line">sudo yum install wget</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//5.7版本</span><br><span class="line">wget http://repo.mysql.com/mysql57-community-release-el7-8.noarch.rpm</span><br><span class="line">//8.0版本</span><br><span class="line">wget https://dev.mysql.com/get/mysql80-community-release-el7-3.noarch.rpm</span><br><span class="line">//其他版本自己去官网下yum安装栏找下载路径</span><br><span class="line">//未安装wget的同学执行以下命令安装</span><br><span class="line">sudo yum install wget</span><br></pre></td></tr></table></figure>
 
 <ol start="2">
 <li>安装</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//-ivh 后跟你装的对应版本mysql包</span><br><span class="line">sudo rpm -ivh mysql57-community-release-el7-8.noarch.rpm</span><br><span class="line"> </span><br><span class="line">sudo yum install mysql-server</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">//-ivh 后跟你装的对应版本mysql包</span><br><span class="line">sudo rpm -ivh mysql57-community-release-el7-8.noarch.rpm</span><br><span class="line"> </span><br><span class="line">sudo yum install mysql-server</span><br></pre></td></tr></table></figure>
 
 <ul>
 <li>输入“y” 确认安装，等待</li>
@@ -445,19 +180,19 @@
 <ol>
 <li>开启3306端口服务:和之前开启port一样(在防火墙开启的情况下)</li>
 </ol>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=3306/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br><span class="line">firewall-cmd --zone=public --list-ports</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">firewall-cmd --zone=public --add-port=3306/tcp --permanent</span><br><span class="line">firewall-cmd --reload</span><br><span class="line">firewall-cmd --zone=public --list-ports</span><br></pre></td></tr></table></figure>
 
 <ol>
 <li>开启Mysql远程连接: </li>
 </ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;&#x2F;登录数据库</span><br><span class="line"></span><br><span class="line">mysql -uroot -p&#123;your password&#125;</span><br><span class="line">&#x2F;&#x2F;使用mysql数据库</span><br><span class="line">mysql&gt;use mysql</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;修改数据库</span><br><span class="line">mysql&gt; ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;root&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;重新修改密码后可连接成功</span><br><span class="line">mysql&gt; alter  user &#39;root&#39;@&#39;%&#39; identified by &#39;123456&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;刷新数据库</span><br><span class="line">mysql&gt; flush privileges;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">&#x2F;&#x2F;登录数据库</span><br><span class="line"></span><br><span class="line">mysql -uroot -p&#123;your password&#125;</span><br><span class="line">&#x2F;&#x2F;使用mysql数据库</span><br><span class="line">mysql&gt;use mysql</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;修改数据库</span><br><span class="line">mysql&gt; ALTER USER &#39;root&#39;@&#39;%&#39; IDENTIFIED WITH mysql_native_password BY &#39;root&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;重新修改密码后可连接成功</span><br><span class="line">mysql&gt; alter  user &#39;root&#39;@&#39;%&#39; identified by &#39;123456&#39;;</span><br><span class="line"></span><br><span class="line">&#x2F;&#x2F;刷新数据库</span><br><span class="line">mysql&gt; flush privileges;</span><br></pre></td></tr></table></figure>
 
 <ol>
 <li>Mysql需要设置密码,不能没有密码</li>
 </ol>
 <p><img src="https://t1.picb.cc/uploads/2020/02/29/kvHHZ8.png" alt="kvHHZ8.png"></p>
 <p><img src="https://t1.picb.cc/uploads/2020/02/29/kvHr8g.png" alt="kvHr8g.png"></p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vim /etc/my.cnf 类似于windows的my.ini 是mysql的配置文件</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim /etc/my.cnf 类似于windows的my.ini 是mysql的配置文件</span><br></pre></td></tr></table></figure>
 
 <p><img src="https://t1.picb.cc/uploads/2020/02/29/kvH5XX.png" alt="kvH5XX.png"></p>
 <ul>
@@ -486,251 +221,8 @@
 <li>其他的基本一样:</li>
 <li>需要自己开启java -jar ….jar</li>
 </ul>
-
-    </div>
-
-    
-    
-    
-
-      <footer class="post-footer">
-          <div class="post-tags">
-              <a href="/tags/%E5%AF%BC%E8%88%AA/" rel="tag"># 导航</a>
-              <a href="/tags/%E5%88%86%E4%BA%AB/" rel="tag"># 分享</a>
-          </div>
-
-        
-
-
-        
-    <div class="post-nav">
-      <div class="post-nav-item">
-    <a href="/2020/02/27/Markdown%E5%AD%A6%E4%B9%A0/" rel="prev" title="Markdown学习">
-      <i class="fa fa-chevron-left"></i> Markdown学习
-    </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/03/02/springboot-1/" rel="next" title="springboot">
-      springboot <i class="fa fa-chevron-right"></i>
-    </a></div>
-    </div>
-      </footer>
-    
-  </article>
-  
-  
-  
-
-  </div>
-
-
-          </div>
-          
-
-<script>
-  window.addEventListener('tabs:register', () => {
-    let activeClass = CONFIG.comments.activeClass;
-    if (CONFIG.comments.storage) {
-      activeClass = localStorage.getItem('comments_active') || activeClass;
-    }
-    if (activeClass) {
-      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
-      if (activeTab) {
-        activeTab.click();
-      }
-    }
-  });
-  if (CONFIG.comments.storage) {
-    window.addEventListener('tabs:click', event => {
-      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
-      let commentClass = event.target.classList[1];
-      localStorage.setItem('comments_active', commentClass);
-    });
-  }
-</script>
-
-        </div>
-          
-  
-  <div class="toggle sidebar-toggle">
-    <span class="toggle-line toggle-line-first"></span>
-    <span class="toggle-line toggle-line-middle"></span>
-    <span class="toggle-line toggle-line-last"></span>
-  </div>
-
-  <aside class="sidebar">
-    <div class="sidebar-inner">
-
-      <ul class="sidebar-nav motion-element">
-        <li class="sidebar-nav-toc">
-          文章目录
-        </li>
-        <li class="sidebar-nav-overview">
-          站点概览
-        </li>
-      </ul>
-
-      <!--noindex-->
-      <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#服务器部署"><span class="nav-number">1.</span> <span class="nav-text">服务器部署</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-购买云服务器"><span class="nav-number">1.1.</span> <span class="nav-text">1,购买云服务器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-部署所需要的工具"><span class="nav-number">1.2.</span> <span class="nav-text">2,部署所需要的工具</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Xshell"><span class="nav-number">1.2.1.</span> <span class="nav-text">Xshell</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装JDK-配置java环境"><span class="nav-number">1.2.2.</span> <span class="nav-text">安装JDK,配置java环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tomcat安装与端口配置"><span class="nav-number">1.2.3.</span> <span class="nav-text">tomcat安装与端口配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL安装与配置"><span class="nav-number">1.2.4.</span> <span class="nav-text">MySQL安装与配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-部署war包"><span class="nav-number">1.3.</span> <span class="nav-text">3,部署war包</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-部署jar包-Springboot构建的项目"><span class="nav-number">1.4.</span> <span class="nav-text">4,部署jar包(Springboot构建的项目)</span></a></li></ol></li></ol></div>
-      </div>
-      <!--/noindex-->
-
-      <div class="site-overview-wrap sidebar-panel">
-        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="GJW459"
-      src="/images/%E5%B0%8F%E6%96%B0.gif">
-  <p class="site-author-name" itemprop="name">GJW459</p>
-  <div class="site-description" itemprop="description"></div>
-</div>
-<div class="site-state-wrap motion-element">
-  <nav class="site-state">
-      <div class="site-state-item site-state-posts">
-          <a href="/archives/">
-        
-          <span class="site-state-item-count">7</span>
-          <span class="site-state-item-name">日志</span>
-        </a>
-      </div>
-      <div class="site-state-item site-state-categories">
-            <a href="/categories/">
-          
-        <span class="site-state-item-count">5</span>
-        <span class="site-state-item-name">分类</span></a>
-      </div>
-      <div class="site-state-item site-state-tags">
-            <a href="/tags/">
-          
-        <span class="site-state-item-count">2</span>
-        <span class="site-state-item-name">标签</span></a>
-      </div>
-  </nav>
-</div>
-  <div class="links-of-author motion-element">
-      <span class="links-of-author-item">
-        <a href="https://github.com/GJW459" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;GJW459" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-      </span>
-  </div>
-
-
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-link"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://github.com/GJW459" title="https:&#x2F;&#x2F;github.com&#x2F;GJW459" rel="noopener" target="_blank">我的github</a>
-        </li>
-    </ul>
-  </div>
-
-      </div>
-
-    </div>
-  </aside>
-  <div id="sidebar-dimmer"></div>
-
-
-      </div>
-    </main>
-
-    <footer class="footer">
-      <div class="footer-inner">
-        
-
-<div class="copyright">
-  
-  &copy; 
-  <span itemprop="copyrightYear">2020</span>
-  <span class="with-love">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">GJW459</span>
-</div>
-
-<!--
-  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
-  </div>
-  <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v7.7.1
-  </div>-->
-
-        
-<div class="busuanzi-count">
-  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-user"></i>
-      </span>
-      <span class="site-uv" title="总访客量">
-        <span id="busuanzi_value_site_uv"></span>
-      </span>
-    </span>
-    <span class="post-meta-divider">|</span>
-    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
-      <span class="post-meta-item-icon">
-        <i class="fa fa-eye"></i>
-      </span>
-      <span class="site-pv" title="总访问量">
-        <span id="busuanzi_value_site_pv"></span>
-      </span>
-    </span>
-</div>
-
-
-
-
-
-
-
-
-      </div>
-    </footer>
-  </div>
-
-  
-  
-  <script color='255,0,0' opacity='0.5' zIndex='-1' count='99' src="/lib/canvas-nest/canvas-nest.min.js"></script>
-  <script src="/lib/anime.min.js"></script>
-  <script src="/lib/velocity/velocity.min.js"></script>
-  <script src="/lib/velocity/velocity.ui.min.js"></script>
-
-<script src="/js/utils.js"></script>
-
-<script src="/js/motion.js"></script>
-
-
-<script src="/js/schemes/pisces.js"></script>
-
-
-<script src="/js/next-boot.js"></script>
-
-
-
-
-  
-
-
-
-
-  
-<script src="/js/local-search.js"></script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-  
-
-</body>
-</html>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">GJW459</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://gjw459.github.io/2020/02/29/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/">https://gjw459.github.io/2020/02/29/%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%AF%BC%E8%88%AA/">导航</a><a class="post-meta__tags" href="/tags/%E5%88%86%E4%BA%AB/">分享</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2020/03/02/springboot-1/"><i class="fa fa-chevron-left">  </i><span>springboot</span></a></div><div class="next-post pull-right"><a href="/2020/02/27/Markdown%E5%AD%A6%E4%B9%A0/"><span>Markdown学习</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(https://pic4.zhimg.com/v2-78dfe120c4f516da57a7c3a5c094789a_r.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2020 By GJW459</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="footer_custom_text">hitokoto</div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.7.0"></script><script src="/js/fancybox.js?version=1.7.0"></script><script src="/js/sidebar.js?version=1.7.0"></script><script src="/js/copy.js?version=1.7.0"></script><script src="/js/fireworks.js?version=1.7.0"></script><script src="/js/transition.js?version=1.7.0"></script><script src="/js/scroll.js?version=1.7.0"></script><script src="/js/head.js?version=1.7.0"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
