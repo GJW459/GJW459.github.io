@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>ajax异步刷新请求JSON到后台</title>
+      <link href="/2020/03/20/ajax%E5%BC%82%E6%AD%A5%E5%88%B7%E6%96%B0%E8%AF%B7%E6%B1%82JSON%E5%88%B0%E5%90%8E%E5%8F%B0/"/>
+      <url>/2020/03/20/ajax%E5%BC%82%E6%AD%A5%E5%88%B7%E6%96%B0%E8%AF%B7%E6%B1%82JSON%E5%88%B0%E5%90%8E%E5%8F%B0/</url>
+      
+        <content type="html"><![CDATA[<h2 id="ajax异步刷新请求JSON到后台"><a href="#ajax异步刷新请求JSON到后台" class="headerlink" title="ajax异步刷新请求JSON到后台"></a>ajax异步刷新请求JSON到后台</h2><a id="more"></a><p>function post() {<br>    //获取input_hidden中的值<br>    var parentId = $(‘#question_input’).val();<br>    var content = $(‘#textarea_input’).val();<br>    $.ajax({<br>        type: “post”,//请求方式<br>        url: “/comment”,//请求地址<br>        //请求头<br>        contentType: “application/json;charset=utf-8”,<br>        //将js对象转化成JSON字符串<br>        data: JSON.stringify({<br>            “content”:content,<br>            “parentId”:parentId,<br>            “type”:”1”<br>        }),<br>        success: function (response) {<br>            console.log(response);<br>            if (response.code==200){</p><pre><code>            $(&apos;#section_div&apos;).hide();        }else {            if (response.code==2002) {                //当没有登录时,实现不刷新页面登录                var isAccepted= window.confirm(response.message);                if (isAccepted){                    window.open(&quot;https://github.com/login/oauth/authorize?client_id=bedef8cad503139674a5&amp;redirect_uri=http://localhost:8087/callback&amp;scope=user&amp;state=1&quot;);                    //通过localStorage                    window.localStorage.setItem(&quot;closeable&quot;,&quot;true&quot;);                }            }else {                alert(response.message);            }        }    },    //请求数据类型    dataType: &quot;json&quot;});console.log(parentId);console.log(content);</code></pre><p>}</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> jquery </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 导航 </tag>
+            
+            <tag> 分享 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>java基础</title>
       <link href="/2020/03/19/java%E5%9F%BA%E7%A1%80/"/>
       <url>/2020/03/19/java%E5%9F%BA%E7%A1%80/</url>
