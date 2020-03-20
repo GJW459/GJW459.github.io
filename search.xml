@@ -8,7 +8,7 @@
       <link href="/2020/03/20/ajax%E5%BC%82%E6%AD%A5%E5%88%B7%E6%96%B0%E8%AF%B7%E6%B1%82JSON%E5%88%B0%E5%90%8E%E5%8F%B0/"/>
       <url>/2020/03/20/ajax%E5%BC%82%E6%AD%A5%E5%88%B7%E6%96%B0%E8%AF%B7%E6%B1%82JSON%E5%88%B0%E5%90%8E%E5%8F%B0/</url>
       
-        <content type="html"><![CDATA[<h2 id="ajax异步刷新请求JSON到后台"><a href="#ajax异步刷新请求JSON到后台" class="headerlink" title="ajax异步刷新请求JSON到后台"></a>ajax异步刷新请求JSON到后台</h2><a id="more"></a><p>function post() {<br>    //获取input_hidden中的值<br>    var parentId = $(‘#question_input’).val();<br>    var content = $(‘#textarea_input’).val();<br>    $.ajax({<br>        type: “post”,//请求方式<br>        url: “/comment”,//请求地址<br>        //请求头<br>        contentType: “application/json;charset=utf-8”,<br>        //将js对象转化成JSON字符串<br>        data: JSON.stringify({<br>            “content”:content,<br>            “parentId”:parentId,<br>            “type”:”1”<br>        }),<br>        success: function (response) {<br>            console.log(response);<br>            if (response.code==200){</p><pre><code>            $(&apos;#section_div&apos;).hide();        }else {            if (response.code==2002) {                //当没有登录时,实现不刷新页面登录                var isAccepted= window.confirm(response.message);                if (isAccepted){                    window.open(&quot;https://github.com/login/oauth/authorize?client_id=bedef8cad503139674a5&amp;redirect_uri=http://localhost:8087/callback&amp;scope=user&amp;state=1&quot;);                    //通过localStorage                    window.localStorage.setItem(&quot;closeable&quot;,&quot;true&quot;);                }            }else {                alert(response.message);            }        }    },    //请求数据类型    dataType: &quot;json&quot;});console.log(parentId);console.log(content);</code></pre><p>}</p>]]></content>
+        <content type="html"><![CDATA[<h2 id="ajax异步刷新请求JSON到后台"><a href="#ajax异步刷新请求JSON到后台" class="headerlink" title="ajax异步刷新请求JSON到后台"></a>ajax异步刷新请求JSON到后台</h2><a id="more"></a><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"> <span class="function"><span class="keyword">function</span> <span class="title">post</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">//获取input_hidden中的值</span></span><br><span class="line">    <span class="keyword">var</span> parentId = $(<span class="string">'#question_input'</span>).val();</span><br><span class="line">    <span class="keyword">var</span> content = $(<span class="string">'#textarea_input'</span>).val();</span><br><span class="line">    $.ajax(&#123;</span><br><span class="line">        type: <span class="string">"post"</span>,<span class="comment">//请求方式</span></span><br><span class="line">        url: <span class="string">"/comment"</span>,<span class="comment">//请求地址</span></span><br><span class="line">        <span class="comment">//请求头</span></span><br><span class="line">        contentType: <span class="string">"application/json;charset=utf-8"</span>,</span><br><span class="line">        <span class="comment">//将js对象转化成JSON字符串</span></span><br><span class="line">        data: <span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">            <span class="string">"content"</span>:content,</span><br><span class="line">            <span class="string">"parentId"</span>:parentId,</span><br><span class="line">            <span class="string">"type"</span>:<span class="string">"1"</span></span><br><span class="line">        &#125;),</span><br><span class="line">        success: <span class="function"><span class="keyword">function</span> (<span class="params">response</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(response);</span><br><span class="line">            <span class="keyword">if</span> (response.code==<span class="number">200</span>)&#123;</span><br><span class="line">                </span><br><span class="line">                $(<span class="string">'#section_div'</span>).hide();</span><br><span class="line">            &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="keyword">if</span> (response.code==<span class="number">2002</span>) &#123;</span><br><span class="line">                    <span class="comment">//当没有登录时,实现不刷新页面登录</span></span><br><span class="line">                    <span class="keyword">var</span> isAccepted= <span class="built_in">window</span>.confirm(response.message);</span><br><span class="line">                    <span class="keyword">if</span> (isAccepted)&#123;</span><br><span class="line">                        <span class="built_in">window</span>.open(<span class="string">"https://github.com/login/oauth/authorize?client_id=bedef8cad503139674a5&amp;redirect_uri=http://localhost:8087/callback&amp;scope=user&amp;state=1"</span>);</span><br><span class="line">                        <span class="comment">//通过localStorage</span></span><br><span class="line">                        <span class="built_in">window</span>.localStorage.setItem(<span class="string">"closeable"</span>,<span class="string">"true"</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">                    alert(response.message);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">//请求数据类型</span></span><br><span class="line">        dataType: <span class="string">"json"</span></span><br><span class="line"></span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="built_in">console</span>.log(parentId);</span><br><span class="line">    <span class="built_in">console</span>.log(content);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>}</p>]]></content>
       
       
       <categories>
@@ -20,9 +20,9 @@
       
         <tags>
             
-            <tag> 导航 </tag>
-            
             <tag> 分享 </tag>
+            
+            <tag> 导航 </tag>
             
         </tags>
       
@@ -74,9 +74,9 @@
       
         <tags>
             
-            <tag> 导航 </tag>
-            
             <tag> 分享 </tag>
+            
+            <tag> 导航 </tag>
             
         </tags>
       
@@ -101,9 +101,9 @@
       
         <tags>
             
-            <tag> 导航 </tag>
-            
             <tag> 分享 </tag>
+            
+            <tag> 导航 </tag>
             
         </tags>
       
@@ -128,9 +128,9 @@
       
         <tags>
             
-            <tag> 导航 </tag>
-            
             <tag> 分享 </tag>
+            
+            <tag> 导航 </tag>
             
         </tags>
       
@@ -155,9 +155,9 @@
       
         <tags>
             
-            <tag> 导航 </tag>
-            
             <tag> 分享 </tag>
+            
+            <tag> 导航 </tag>
             
         </tags>
       
@@ -182,9 +182,9 @@
       
         <tags>
             
-            <tag> 导航 </tag>
-            
             <tag> 分享 </tag>
+            
+            <tag> 导航 </tag>
             
         </tags>
       
@@ -209,9 +209,9 @@
       
         <tags>
             
-            <tag> 导航 </tag>
-            
             <tag> 分享 </tag>
+            
+            <tag> 导航 </tag>
             
         </tags>
       
@@ -236,9 +236,9 @@
       
         <tags>
             
-            <tag> 导航 </tag>
-            
             <tag> 分享 </tag>
+            
+            <tag> 导航 </tag>
             
         </tags>
       
@@ -273,6 +273,17 @@
     
     <entry>
       <title></title>
+      <link href="/lib/canvas-nest/canvas-nest.min.js"/>
+      <url>/lib/canvas-nest/canvas-nest.min.js</url>
+      
+        <content type="html"><![CDATA[!function(){function o(w,v,i){return w.getAttribute(v)||i}function j(i){return document.getElementsByTagName(i)}function l(){var i=j("script"),w=i.length,v=i[w-1];return{l:w,z:o(v,"zIndex",-1),o:o(v,"opacity",0.5),c:o(v,"color","0,0,0"),n:o(v,"count",99)}}function k(){r=u.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,n=u.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight}function b(){e.clearRect(0,0,r,n);var w=[f].concat(t);var x,v,A,B,z,y;t.forEach(function(i){i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>r||i.x<0?-1:1,i.ya*=i.y>n||i.y<0?-1:1,e.fillRect(i.x-0.5,i.y-0.5,1,1);for(v=0;v<w.length;v++){x=w[v];if(i!==x&&null!==x.x&&null!==x.y){B=i.x-x.x,z=i.y-x.y,y=B*B+z*z;y<x.max&&(x===f&&y>=x.max/2&&(i.x-=0.03*B,i.y-=0.03*z),A=(x.max-y)/x.max,e.beginPath(),e.lineWidth=A/2,e.strokeStyle="rgba("+s.c+","+(A+0.2)+")",e.moveTo(i.x,i.y),e.lineTo(x.x,x.y),e.stroke())}}w.splice(w.indexOf(i),1)}),m(b)}var u=document.createElement("canvas"),s=l(),c="c_n"+s.l,e=u.getContext("2d"),r,n,m=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||function(i){window.setTimeout(i,1000/45)},a=Math.random,f={x:null,y:null,max:20000};u.id=c;u.style.cssText="position:fixed;top:0;left:0;z-index:"+s.z+";opacity:"+s.o;j("body")[0].appendChild(u);k(),window.onresize=k;window.onmousemove=function(i){i=i||window.event,f.x=i.clientX,f.y=i.clientY},window.onmouseout=function(){f.x=null,f.y=null};for(var t=[],p=0;s.n>p;p++){var h=a()*r,g=a()*n,q=2*a()-1,d=2*a()-1;t.push({x:h,y:g,xa:q,ya:d,max:6000})}setTimeout(function(){b()},100)}();]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
       <link href="/lib/canvas-nest/README.html"/>
       <url>/lib/canvas-nest/README.html</url>
       
@@ -288,17 +299,6 @@
       <url>/lib/canvas-nest/canvas-nest-nomobile.min.js</url>
       
         <content type="html"><![CDATA[!function(){var userAgentInfo = navigator.userAgent;    var Agents = ["iPad", "iPhone", "Android",           "SymbianOS", "Windows Phone",           "iPod", "webOS", "BlackBerry", "IEMobile"];    for (var v = 0; v < Agents.length; v++) {      if (userAgentInfo.indexOf(Agents[v]) > 0) {        return;      }    }function o(w,v,i){return w.getAttribute(v)||i}function j(i){return document.getElementsByTagName(i)}function l(){var i=j("script"),w=i.length,v=i[w-1];return{l:w,z:o(v,"zIndex",-1),o:o(v,"opacity",0.5),c:o(v,"color","0,0,0"),n:o(v,"count",99)}}function k(){r=u.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,n=u.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight}function b(){e.clearRect(0,0,r,n);var w=[f].concat(t);var x,v,A,B,z,y;t.forEach(function(i){i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>r||i.x<0?-1:1,i.ya*=i.y>n||i.y<0?-1:1,e.fillRect(i.x-0.5,i.y-0.5,1,1);for(v=0;v<w.length;v++){x=w[v];if(i!==x&&null!==x.x&&null!==x.y){B=i.x-x.x,z=i.y-x.y,y=B*B+z*z;y<x.max&&(x===f&&y>=x.max/2&&(i.x-=0.03*B,i.y-=0.03*z),A=(x.max-y)/x.max,e.beginPath(),e.lineWidth=A/2,e.strokeStyle="rgba("+s.c+","+(A+0.2)+")",e.moveTo(i.x,i.y),e.lineTo(x.x,x.y),e.stroke())}}w.splice(w.indexOf(i),1)}),m(b)}var u=document.createElement("canvas"),s=l(),c="c_n"+s.l,e=u.getContext("2d"),r,n,m=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||function(i){window.setTimeout(i,1000/45)},a=Math.random,f={x:null,y:null,max:20000};u.id=c;u.style.cssText="position:fixed;top:0;left:0;z-index:"+s.z+";opacity:"+s.o;j("body")[0].appendChild(u);k(),window.onresize=k;window.onmousemove=function(i){i=i||window.event,f.x=i.clientX,f.y=i.clientY},window.onmouseout=function(){f.x=null,f.y=null};for(var t=[],p=0;s.n>p;p++){var h=a()*r,g=a()*n,q=2*a()-1,d=2*a()-1;t.push({x:h,y:g,xa:q,ya:d,max:6000})}setTimeout(function(){b()},100)}();]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/lib/canvas-nest/canvas-nest.min.js"/>
-      <url>/lib/canvas-nest/canvas-nest.min.js</url>
-      
-        <content type="html"><![CDATA[!function(){function o(w,v,i){return w.getAttribute(v)||i}function j(i){return document.getElementsByTagName(i)}function l(){var i=j("script"),w=i.length,v=i[w-1];return{l:w,z:o(v,"zIndex",-1),o:o(v,"opacity",0.5),c:o(v,"color","0,0,0"),n:o(v,"count",99)}}function k(){r=u.width=window.innerWidth||document.documentElement.clientWidth||document.body.clientWidth,n=u.height=window.innerHeight||document.documentElement.clientHeight||document.body.clientHeight}function b(){e.clearRect(0,0,r,n);var w=[f].concat(t);var x,v,A,B,z,y;t.forEach(function(i){i.x+=i.xa,i.y+=i.ya,i.xa*=i.x>r||i.x<0?-1:1,i.ya*=i.y>n||i.y<0?-1:1,e.fillRect(i.x-0.5,i.y-0.5,1,1);for(v=0;v<w.length;v++){x=w[v];if(i!==x&&null!==x.x&&null!==x.y){B=i.x-x.x,z=i.y-x.y,y=B*B+z*z;y<x.max&&(x===f&&y>=x.max/2&&(i.x-=0.03*B,i.y-=0.03*z),A=(x.max-y)/x.max,e.beginPath(),e.lineWidth=A/2,e.strokeStyle="rgba("+s.c+","+(A+0.2)+")",e.moveTo(i.x,i.y),e.lineTo(x.x,x.y),e.stroke())}}w.splice(w.indexOf(i),1)}),m(b)}var u=document.createElement("canvas"),s=l(),c="c_n"+s.l,e=u.getContext("2d"),r,n,m=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||function(i){window.setTimeout(i,1000/45)},a=Math.random,f={x:null,y:null,max:20000};u.id=c;u.style.cssText="position:fixed;top:0;left:0;z-index:"+s.z+";opacity:"+s.o;j("body")[0].appendChild(u);k(),window.onresize=k;window.onmousemove=function(i){i=i||window.event,f.x=i.clientX,f.y=i.clientY},window.onmouseout=function(){f.x=null,f.y=null};for(var t=[],p=0;s.n>p;p++){var h=a()*r,g=a()*n,q=2*a()-1,d=2*a()-1;t.push({x:h,y:g,xa:q,ya:d,max:6000})}setTimeout(function(){b()},100)}();]]></content>
       
     </entry>
     
