@@ -1,0 +1,111 @@
+<!DOCTYPE html><html lang="zh-CN"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta name="description" content="Spring注解"><meta name="keywords" content="分享,导航"><meta name="author" content="GJW459"><meta name="copyright" content="GJW459"><title>Spring注解 | 平凡的路の博客</title><link rel="shortcut icon" href="/melody-favicon.ico"><link rel="stylesheet" href="/css/index.css?version=1.7.0"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/font-awesome@latest/css/font-awesome.min.css?version=1.7.0"><meta name="format-detection" content="telephone=no"><meta http-equiv="x-dns-prefetch-control" content="on"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><script src="https://v1.hitokoto.cn/?encode=js&amp;charset=utf-8&amp;select=.footer_custom_text" defer></script><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  }
+} </script><meta name="generator" content="Hexo 4.2.0"></head><body><canvas class="fireworks"></canvas><i class="fa fa-arrow-right" id="toggle-sidebar" aria-hidden="true"></i><div id="sidebar" data-display="true"><div class="toggle-sidebar-info text-center"><span data-toggle="Toggle article">Toggle site</span><hr></div><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar"></div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Spring注解"><span class="toc-number">1.</span> <span class="toc-text">Spring注解</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-声明bean的注解"><span class="toc-number">1.0.1.</span> <span class="toc-text">1.声明bean的注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-注入bean的注解"><span class="toc-number">1.0.2.</span> <span class="toc-text">2.注入bean的注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-java配置类相关注解"><span class="toc-number">1.0.3.</span> <span class="toc-text">3.java配置类相关注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-切面（AOP）相关注解"><span class="toc-number">1.0.4.</span> <span class="toc-text">4.切面（AOP）相关注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Bean的属性支持"><span class="toc-number">1.0.5.</span> <span class="toc-text">5.@Bean的属性支持</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-Value注解"><span class="toc-number">1.0.6.</span> <span class="toc-text">6.@Value注解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-环境切换"><span class="toc-number">1.0.7.</span> <span class="toc-text">7.环境切换</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-异步相关"><span class="toc-number">1.0.8.</span> <span class="toc-text">8.异步相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-定时任务相关"><span class="toc-number">1.0.9.</span> <span class="toc-text">9.定时任务相关</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#10-Enable注解说明"><span class="toc-number">1.0.10.</span> <span class="toc-text">10.@Enable注解说明</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SpringMVC部分"><span class="toc-number">2.</span> <span class="toc-text">SpringMVC部分</span></a></li></ol></div></div><div class="author-info hide"><div class="author-info__avatar text-center"><img src="https://img2.woyaogexing.com/2020/03/19/a26a52f7ea6a41f398439cf4fea00309!400x400.jpeg"></div><div class="author-info__name text-center">GJW459</div><div class="author-info__description text-center"></div><div class="follow-button"><a href="https://github.com/gjw459" target="_blank" rel="noopener">github</a></div><hr><div class="author-info-articles"><a class="author-info-articles__archives article-meta" href="/archives"><span class="pull-left">Articles</span><span class="pull-right">14</span></a><a class="author-info-articles__tags article-meta" href="/tags"><span class="pull-left">Tags</span><span class="pull-right">3</span></a><a class="author-info-articles__categories article-meta" href="/categories"><span class="pull-left">Categories</span><span class="pull-right">10</span></a></div></div></div><div id="content-outer"><div id="top-container" style="background-image: url(https://pic4.zhimg.com/v2-78dfe120c4f516da57a7c3a5c094789a_r.jpg)"><div id="page-header"><span class="pull-left"> <a id="site-name" href="/">平凡的路の博客</a></span><i class="fa fa-bars toggle-menu pull-right" aria-hidden="true"></i><span class="pull-right menus">   <a class="site-page" href="/">Home</a><a class="site-page" href="/archives">Archives</a><a class="site-page" href="/tags">Tags</a><a class="site-page" href="/categories">Categories</a></span><span class="pull-right"></span></div><div id="post-info"><div id="post-title">Spring注解</div><div id="post-meta"><time class="post-meta__date"><i class="fa fa-calendar" aria-hidden="true"></i> 2020-04-03</time><span class="post-meta__separator">|</span><i class="fa fa-inbox post-meta__icon" aria-hidden="true"></i><a class="post-meta__categories" href="/categories/spring/">spring</a></div></div></div><div class="layout" id="content-inner"><article id="post"><div class="article-container" id="post-content"><h1 id="Spring注解"><a href="#Spring注解" class="headerlink" title="Spring注解"></a>Spring注解</h1><a id="more"></a>
+
+<h3 id="1-声明bean的注解"><a href="#1-声明bean的注解" class="headerlink" title="1.声明bean的注解"></a>1.声明bean的注解</h3><p><strong>@Component</strong> 组件，没有明确的角色</p>
+<p><strong>@Service</strong> 在业务逻辑层使用（service层）</p>
+<p><strong>@Repository</strong> 在数据访问层使用（dao层）</p>
+<p><strong>@Controller</strong> 在展现层使用，控制器的声明</p>
+<h3 id="2-注入bean的注解"><a href="#2-注入bean的注解" class="headerlink" title="2.注入bean的注解"></a>2.注入bean的注解</h3><p>@Autowired：由Spring提供</p>
+<p>@Inject：由JSR-330提供</p>
+<p>@Resource：由JSR-250提供</p>
+<p>都可以注解在set方法和属性上，推荐注解在属性上（一目了然，少写代码）。</p>
+<h3 id="3-java配置类相关注解"><a href="#3-java配置类相关注解" class="headerlink" title="3.java配置类相关注解"></a>3.java配置类相关注解</h3><p>@Configuration 声明当前类为配置类，相当于xml形式的Spring配置（类上）</p>
+<p>@Bean 注解在方法上，声明当前方法的返回值为一个bean，替代xml中的方式（方法上）</p>
+<p>@Configuration 声明当前类为配置类，其中内部组合了@Component注解，表明这个类是一个bean（类上）</p>
+<p>@ComponentScan 用于对Component进行扫描，相当于xml中的（类上）</p>
+<p>@WishlyConfiguration 为@Configuration与@ComponentScan的组合注解，可以替代这两个注解</p>
+<h3 id="4-切面（AOP）相关注解"><a href="#4-切面（AOP）相关注解" class="headerlink" title="4.切面（AOP）相关注解"></a>4.切面（AOP）相关注解</h3><p>Spring支持AspectJ的注解式切面编程。</p>
+<p><strong>@Aspect</strong> 声明一个切面（类上）<br>使用<strong>@After、@Before、@Around</strong>定义建言（advice），可直接将拦截规则（切点）作为参数。</p>
+<p><strong>@After</strong> 在方法执行之后执行（方法上）<br><strong>@Before</strong> 在方法执行之前执行（方法上）<br><strong>@Around</strong> 在方法执行之前与之后执行（方法上）</p>
+<p><strong>@PointCut</strong> 声明切点<br>在java配置类中使用@EnableAspectJAutoProxy注解开启Spring对AspectJ代理的支持（类上）</p>
+<h3 id="5-Bean的属性支持"><a href="#5-Bean的属性支持" class="headerlink" title="5.@Bean的属性支持"></a>5.@Bean的属性支持</h3><p><strong>@Scope</strong> 设置Spring容器如何新建Bean实例（方法上，得有@Bean）<br>其设置类型包括：</p>
+<p>Singleton （单例,一个Spring容器中只有一个bean实例，默认模式）,<br>Protetype （每次调用新建一个bean）,<br>Request （web项目中，给每个http request新建一个bean）,<br>Session （web项目中，给每个http session新建一个bean）,<br>GlobalSession（给每一个 global http session新建一个Bean实例）</p>
+<p><strong>@StepScope</strong> 在Spring Batch中还有涉及</p>
+<p><strong>@PostConstruct</strong> 由JSR-250提供，在构造函数执行完之后执行，等价于xml配置文件中bean的initMethod</p>
+<p><strong>@PreDestory</strong> 由JSR-250提供，在Bean销毁之前执行，等价于xml配置文件中bean的destroyMethod</p>
+<h3 id="6-Value注解"><a href="#6-Value注解" class="headerlink" title="6.@Value注解"></a>6.@Value注解</h3><p><strong>@Value</strong> 为属性注入值（属性上）<br>支持如下方式的注入： </p>
+<ol>
+<li>注入普通字符</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Value</span>(<span class="string">"Michael Jackson"</span>)</span><br><span class="line">String name;</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>注入操作系统属性</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Value</span>(<span class="string">"#&#123;systemProperties['os.name']&#125;"</span>)</span><br><span class="line">String osName;</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>注入表达式结果</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Value</span>(<span class="string">"#&#123; T(java.lang.Math).random() * 100 &#125;"</span>) </span><br><span class="line">String randomNumber;</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>注入其它bean属性</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Value</span>(<span class="string">"#&#123;domeClass.name&#125;"</span>)</span><br><span class="line">String name;</span><br></pre></td></tr></table></figure>
+
+<ol start="5">
+<li>注入文件资源</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Value</span>(<span class="string">"classpath:com/hgs/hello/test.txt"</span>)</span><br><span class="line">String Resource file;</span><br></pre></td></tr></table></figure>
+
+<ol start="6">
+<li>注入网站资源</li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Value</span>(<span class="string">"http://www.cznovel.com"</span>)</span><br><span class="line">Resource url;</span><br></pre></td></tr></table></figure>
+
+<ol start="7">
+<li><strong>注入配置文件</strong></li>
+</ol>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@Value</span>(<span class="string">"$&#123;book.name&#125;"</span>)</span><br><span class="line">String bookName;</span><br></pre></td></tr></table></figure>
+
+<p>注入配置使用方法：<br>① 编写配置文件（test.properties）</p>
+<p>book.name=《三体》</p>
+<p>② @PropertySource 加载配置文件(类上)</p>
+<p>@PropertySource(“classpath:com/hgs/hello/test/test.propertie”)</p>
+<p>③ 还需配置一个PropertySourcesPlaceholderConfigurer的bean。</p>
+<h3 id="7-环境切换"><a href="#7-环境切换" class="headerlink" title="7.环境切换"></a>7.环境切换</h3><p>@Profile 通过设定Environment的ActiveProfiles来设定当前context需要使用的配置环境。（类或方法上）</p>
+<p><strong>@Conditional</strong> Spring4中可以使用此注解定义条件话的bean，通过实现Condition接口，并重写matches方法，从而决定该bean是否被实例化。（方法上）</p>
+<h3 id="8-异步相关"><a href="#8-异步相关" class="headerlink" title="8.异步相关"></a>8.异步相关</h3><p><strong>@EnableAsync</strong> 配置类中，通过此注解开启对异步任务的支持，叙事性AsyncConfigurer接口（类上）</p>
+<p><strong>@Async</strong> 在实际执行的bean方法使用该注解来申明其是一个异步任务（方法上或类上<em>所有的方法都将异步</em>，需要@EnableAsync开启异步任务）</p>
+<h3 id="9-定时任务相关"><a href="#9-定时任务相关" class="headerlink" title="9.定时任务相关"></a>9.定时任务相关</h3><p><strong>@EnableScheduling</strong> 在配置类上使用，开启计划任务的支持（类上）</p>
+<p><strong>@Scheduled</strong> 来申明这是一个任务，包括cron,fixDelay,fixRate等类型（方法上，需先开启计划任务的支持）</p>
+<h3 id="10-Enable注解说明"><a href="#10-Enable注解说明" class="headerlink" title="10.@Enable注解说明"></a><strong>10.@Enable注解说明</strong></h3><p>这些注解主要用来开启对xxx的支持。<br><strong>@EnableAspectJAutoProxy</strong> 开启对AspectJ自动代理的支持</p>
+<p><strong>@EnableAsync</strong> 开启异步方法的支持</p>
+<p><strong>@EnableScheduling</strong> 开启计划任务的支持</p>
+<p><strong>@EnableWebMvc</strong> 开启Web MVC的配置支持</p>
+<p><strong>@EnableConfigurationProperties</strong> 开启对@ConfigurationProperties注解配置Bean的支持</p>
+<p><strong>@EnableJpaRepositories</strong> 开启对SpringData JPA Repository的支持</p>
+<p><strong>@EnableTransactionManagement</strong> 开启注解式事务的支持</p>
+<p><strong>@EnableCaching</strong> 开启注解式的缓存支持</p>
+<p>11.测试相关注解</p>
+<p><strong>@RunWith</strong> 运行器，Spring中通常用于对JUnit的支持</p>
+<p><strong>@ContextConfiguration</strong> 用来加载配置ApplicationContext，其中classes属性用来加载配置类</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="meta">@RunWith</span>(SpringJUnit4ClassRunner<span class="class">.<span class="keyword">class</span>)</span></span><br><span class="line"><span class="class">@<span class="title">ContextConfiguration</span>(<span class="title">classes</span></span>=&#123;TestConfig<span class="class">.<span class="keyword">class</span>&#125;)</span></span><br><span class="line"><span class="class"><span class="title">public</span> <span class="title">class</span> <span class="title">KjtTest</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> Logger logger = LoggerFactory.getLogger(<span class="string">"KjtTest"</span>);</span><br><span class="line">    <span class="meta">@Autowired</span></span><br><span class="line">    Service service;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Test</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">test</span><span class="params">()</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h1 id="SpringMVC部分"><a href="#SpringMVC部分" class="headerlink" title="SpringMVC部分"></a>SpringMVC部分</h1><p><strong>@EnableWebMvc</strong> 在配置类中开启Web MVC的配置支持，如一些ViewResolver或者MessageConverter等，若无此句，重写WebMvcConfigurerAdapter方法（用于对SpringMVC的配置）。</p>
+<p><strong>@Controller</strong> 声明该类为SpringMVC中的Controller</p>
+<p><strong>@RequestMapping</strong> 用于映射Web请求，包括访问路径和参数（类或方法上）</p>
+<p><strong>@ResponseBody</strong> 支持将返回值放在response内，而不是一个页面，通常用户返回json数据（返回值旁或方法上）</p>
+<p><strong>@RequestBody</strong> 允许request的参数在request体中，而不是在直接连接在地址后面。（放在参数前）</p>
+<p><strong>@PathVariable</strong> 用于接收路径参数，比如@RequestMapping(“/hello/{name}”)申明的路径，将注解放在参数中前，即可获取该值，通常作为Restful的接口实现方法。</p>
+<p><strong>@RestController</strong> 该注解为一个组合注解，相当于@Controller和@ResponseBody的组合，注解在类上，意味着，该Controller的所有方法都默认加上了@ResponseBody。</p>
+<p><strong>@ControllerAdvice</strong> 通过该注解，我们可以将对于控制器的全局配置放置在同一个位置，注解了@Controller的类的方法可使用@ExceptionHandler、@InitBinder、@ModelAttribute注解到方法上，<br>这对所有注解了 @RequestMapping的控制器内的方法有效。</p>
+<p><strong>@ExceptionHandler</strong> 用于全局处理控制器里的异常</p>
+<p><strong>@InitBinder</strong> 用来设置WebDataBinder，WebDataBinder用来自动绑定前台请求参数到Model中。</p>
+<p><strong>@ModelAttribute</strong> 本来的作用是绑定键值对到Model里，在@ControllerAdvice中是让全局的@RequestMapping都能获得在此处设置的键值对。</p>
+</div></article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">GJW459</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://gjw459.github.io/2020/04/03/Spring%E6%B3%A8%E8%A7%A3/">https://gjw459.github.io/2020/04/03/Spring%E6%B3%A8%E8%A7%A3/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/%E5%88%86%E4%BA%AB/">分享</a><a class="post-meta__tags" href="/tags/%E5%AF%BC%E8%88%AA/">导航</a></div><nav id="pagination"><div class="prev-post pull-left"><a href="/2020/04/03/SSM%E6%A1%86%E6%9E%B6%E6%90%AD%E5%BB%BA/"><i class="fa fa-chevron-left">  </i><span>SSM框架搭建</span></a></div><div class="next-post pull-right"><a href="/2020/03/27/SpringBoot%E9%9B%86%E6%88%90-MarkDown-editor-md%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87%E4%B8%8A%E4%BC%A0/"><span>SpringBoot集成 MarkDown editor.md实现图片上传</span><i class="fa fa-chevron-right"></i></a></div></nav></div></div><footer class="footer-bg" style="background-image: url(https://pic4.zhimg.com/v2-78dfe120c4f516da57a7c3a5c094789a_r.jpg)"><div class="layout" id="footer"><div class="copyright">&copy;2020 By GJW459</div><div class="framework-info"><span>Driven - </span><a href="http://hexo.io" target="_blank" rel="noopener"><span>Hexo</span></a><span class="footer-separator">|</span><span>Theme - </span><a href="https://github.com/Molunerfinn/hexo-theme-melody" target="_blank" rel="noopener"><span>Melody</span></a></div><div class="footer_custom_text">hitokoto</div><div class="busuanzi"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><span id="busuanzi_container_page_pv"><i class="fa fa-file"></i><span id="busuanzi_value_page_pv"></span><span></span></span></div></div></footer><i class="fa fa-arrow-up" id="go-up" aria-hidden="true"></i><script src="https://cdn.jsdelivr.net/npm/animejs@latest/anime.min.js"></script><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-animate@latest/velocity.min.js"></script><script src="https://cdn.jsdelivr.net/npm/velocity-ui-pack@latest/velocity.ui.min.js"></script><script src="/js/utils.js?version=1.7.0"></script><script src="/js/fancybox.js?version=1.7.0"></script><script src="/js/sidebar.js?version=1.7.0"></script><script src="/js/copy.js?version=1.7.0"></script><script src="/js/fireworks.js?version=1.7.0"></script><script src="/js/transition.js?version=1.7.0"></script><script src="/js/scroll.js?version=1.7.0"></script><script src="/js/head.js?version=1.7.0"></script><script>if(/Android|webOS|iPhone|iPod|iPad|BlackBerry/i.test(navigator.userAgent)) {
+  $('#nav').addClass('is-mobile')
+  $('footer').addClass('is-mobile')
+  $('#top-container').addClass('is-mobile')
+}</script></body></html>
